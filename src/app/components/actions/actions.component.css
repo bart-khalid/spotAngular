@@ -1,0 +1,30 @@
+#logOut{
+  position: fixed;
+  z-index: 1;
+  width: 100px;
+  height: 80px;
+  background-color: #0e2c37;
+  color: chocolate;
+  top: 40px;
+  right: 50px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
+
+}
+
+#logOut:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+#yourSpot {
+  position: fixed;
+  z-index: 1;
+  bottom: 10px;
+}
+
+
+
+#msg{
+  color: yellow;
+  display: none;
+}

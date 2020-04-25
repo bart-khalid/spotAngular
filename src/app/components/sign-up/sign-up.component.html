@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="card bg-transparent">
+
+      <h1 style="text-align: center ; color: #125699">Welcome</h1>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-4">
+            <label>Username</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input class="form-control" type="text" placeholder="your username" [(ngModel)]="login.username">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <label>Email</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input class="form-control" type="email" placeholder="your email" [(ngModel)]="login.email">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+            <label>Password</label>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="password" class="form-control " placeholder="your password" [(ngModel)]="login.password">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-fouter">
+        <button class="btn btn-block btn-outline-success" (click)="save(login)" >Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>

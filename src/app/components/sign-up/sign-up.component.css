@@ -1,0 +1,12 @@
+.container{
+
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10%;
+
+}
+label{
+  color: #14b2ef;
+}

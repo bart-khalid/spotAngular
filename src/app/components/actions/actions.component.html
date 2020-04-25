@@ -1,0 +1,57 @@
+<button class="btn-outline-light fa fa-window-close" id="logOut" (click)="logOut()">Log Out</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+  <div class="card bg-transparent">
+    <div class="card-header" style="color: #1976d2">List of Spots</div>
+    <div class="card-body">
+      <table class="table table-striped table-bordered table-hover table-borderless table-dark">
+        <thead>
+        <th style="width: 5%">N° Spot</th>
+        <th style="width: 10%">Username</th>
+        <th style="width: 5%">Nbr Spots</th>
+        <th style="width: 15%">Date</th>
+        <th style="width: 55%">Spot</th>
+        <th style="width: 5%">like</th>
+        <th style="width: 5%">sendEmail</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let s of spotes">
+          <td>{{s.id}}</td>
+          <td>{{s.username}}</td>
+          <td>{{s.nbrSpot}}</td>
+          <td>{{s.date}}</td>
+          <td>{{s.spotText}}</td>
+          <td>
+            <a  (click)="addLike(s, currentUser.username)"> <i class="fa fa-gittip" style="font-size:24px;color:red"></i><i>{{s.nbrLike}}</i></a>
+            <p id="msg">liked!</p>
+          </td>
+          <td>
+            <a href="mailTo: {{s.email}}"><i class="fa fa-envelope" style="font-size:24px"></i></a>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot></tfoot>
+      </table>
+    </div>
+    <div class="card-fouter"></div>
+  </div>
+    </div>
+  </div>
+</div> <br> <br>
+<hr>
+<div class="container" id="yourSpot">
+  <div class="row" style=" bottom: 0">
+    <div class="col-md-1">
+    <label style="color: #14b2ef">New Spot</label>
+    </div>
+    <div class="col-md-9">
+    <textarea class="w3-input w3-border btn-block btn-outline-primary" style="resize:none" [(ngModel)]="spot.spotText"></textarea>
+    </div>
+    <div class="col-md-2">
+    <button class="btn btn-block btn-danger" (click)="save(spot, currentUser.username)">Share</button>
+    </div>
+  </div>
+</div>
+
+
