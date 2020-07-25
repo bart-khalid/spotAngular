@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userSmia') !== '') {
-      this.router.navigate(['actions/home']);
-     }
+    // if (localStorage.getItem('userSmia') !== '') {
+      // this.router.navigate(['actions/home']);
+     // }
   }
   public seConnecter(username: string, password: string) {
     if ((username == null || username === '') && (password == null || password === '')) {
