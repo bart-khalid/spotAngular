@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userSmia') !== '') {
+    if (localStorage.getItem('userSmia') !== null || localStorage.getItem('userSmia') !== undefined) {
       this.router.navigate(['actions/home']);
      }
   }

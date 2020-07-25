@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UrlConfigService {
 
-  private _url = 'http://localhost:8090/spot/';
+  private _url = 'https://spottedback.herokuapp.com/spot/';
   constructor() { }
 
   get url(): string {
