@@ -1,57 +1,76 @@
-<button class="btn-outline-light fa fa-window-close" id="logOut" (click)="logOut()">Log Out</button>
-<div class="container">
+<nav class="navbar fixed-top navbar-light bg-light" id="navbar" style="z-index: 2">
+  <div class="row" style="width: 100%">
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-warning" (click)="visibleSidebar1 = true" pTooltip="Menu List"><i class="pi pi-list"></i></button>
+    </div>
+    <div class="col-md-4" style="text-align: center; width: 100%"><h3><strong class="txt">Spotted</strong></h3></div>
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-warning" pTooltip="Logout" (click)="logOut()" [style]="{float: 'right'}"><i class="pi pi-power-off"></i></button>
+    </div>
+  </div>
+</nav>
+
+<p-progressSpinner *ngIf="actionDone" [style]="{width: '50px', height: '50px', left: '46%'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+
+
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="9998" [style]="{backgroundColor: '#efaf00'}">
+  <div>
+    <div class="row" style="padding-top: 20%">
+      <div class="col-md-12">
+        <button class="btn btn-outline-danger btn-block" disabled>{{username}}</button>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 10%">
+      <div class="col-md-12">
+        <button class="btn btn-outline-dark btn-block" routerLink="home" (click)="visibleSidebar1 = false" >Home</button>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 10%">
+      <div class="col-md-12">
+        <button class="btn btn-outline-dark btn-block" routerLink="mySpots" (click)="visibleSidebar1 = false">My Spots</button>
+      </div>
+    </div>
+    <br> <br> <br>
+    <div class="txt">Spotted Fstg</div>
+    <br> <br> <br>
+
+    <div class="row" style="padding-top: 10%">
+      <div class="col-md-12">
+        <button class="btn btn-outline-danger btn-block" routerLink="myInfos" (click)="visibleSidebar1 = false">My Infos</button>
+      </div>
+    </div>
+    <br>
+    <hr>
+
+    <div class="row" style="padding-top: 10%">
+      <div class="col-md-12">
+        <button class="btn btn-outline-danger btn-block" routerLink="help" (click)="visibleSidebar1 = false">About us</button>
+      </div>
+    </div>
+
+  </div>
+</p-sidebar>
+
+<div class="newSpot" style="bottom: 0; right: 0; position: fixed; z-index: 9898">
+  <button class="btn btn-success" style="color: red" (click)="visibleSidebar2 = true">New Spot</button>
+</div>
+
+<p-sidebar position="bottom" [(visible)]="visibleSidebar2" [baseZIndex]="9999" [style]="{backgroundColor: '#efaf00'}">
   <div class="row">
-    <div class="col-md-12">
-  <div class="card bg-transparent">
-    <div class="card-header" style="color: #1976d2">List of Spots</div>
-    <div class="card-body">
-      <table class="table table-striped table-bordered table-hover table-borderless table-dark">
-        <thead>
-        <th style="width: 5%">N° Spot</th>
-        <th style="width: 10%">Username</th>
-        <th style="width: 5%">Nbr Spots</th>
-        <th style="width: 15%">Date</th>
-        <th style="width: 55%">Spot</th>
-        <th style="width: 5%">like</th>
-        <th style="width: 5%">sendEmail</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let s of spotes">
-          <td>{{s.id}}</td>
-          <td>{{s.username}}</td>
-          <td>{{s.nbrSpot}}</td>
-          <td>{{s.date}}</td>
-          <td>{{s.spotText}}</td>
-          <td>
-            <a  (click)="addLike(s, currentUser.username)"> <i class="fa fa-gittip" style="font-size:24px;color:red"></i><i>{{s.nbrLike}}</i></a>
-            <p id="msg">liked!</p>
-          </td>
-          <td>
-            <a href="mailTo: {{s.email}}"><i class="fa fa-envelope" style="font-size:24px"></i></a>
-          </td>
-        </tr>
-        </tbody>
-        <tfoot></tfoot>
-      </table>
-    </div>
-    <div class="card-fouter"></div>
-  </div>
-    </div>
-  </div>
-</div> <br> <br>
-<hr>
-<div class="container" id="yourSpot">
-  <div class="row" style=" bottom: 0">
-    <div class="col-md-1">
-    <label style="color: #14b2ef">New Spot</label>
-    </div>
-    <div class="col-md-9">
-    <textarea class="w3-input w3-border btn-block btn-outline-primary" style="resize:none" [(ngModel)]="spot.spotText"></textarea>
+    <div class="col-md-10">
+      <textarea name="spotText" id="spotText" rows="3" style="width: 100%; resize: none;" placeholder="Your spot !!!" [(ngModel)]="spot.spotText"></textarea>
     </div>
     <div class="col-md-2">
-    <button class="btn btn-block btn-danger" (click)="save(spot, currentUser.username)">Share</button>
+      <button pButton icon="pi pi-save" class="btn btn-block" label="Done" (click)="save(spot)"></button>
     </div>
   </div>
+</p-sidebar>
+
+
+<br> <br> <br>
+<div style="margin-left: 10%; margin-right: 10%">
+<router-outlet></router-outlet>
 </div>
+
 
 

@@ -4,7 +4,8 @@ import {Spot} from '../../controller/model/spot.model';
 import {Login} from '../../controller/model/login.model';
 import {LoginComponent} from '../login/login.component';
 import {LoginService} from '../../controller/service/login.service';
-import {Router} from '@angular/router';
+import {Route, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-actions',
@@ -12,73 +13,38 @@ import {Router} from '@angular/router';
   styleUrls: ['./actions.component.css']
 })
 export class ActionsComponent implements OnInit {
-  private list1: Spot[];
-  private list2: Spot[];
-  constructor(private spotService: SpotService, private loginService: LoginService, private router: Router) { }
+
+  public hideShow = false;
+  visibleSidebar1;
+  visibleSidebar2;
+  username: string;
+  spot = new Spot();
+  constructor(private spotService: SpotService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.spotService.findAll();
-    if (this.loginService.currentUser == null) {
-      this.router.navigate(['']);
-    } else if (this.loginService.currentUser.username == null || this.spotService.spotes.length === 0) {
+    if (localStorage.getItem('userSmia') == null || localStorage.getItem('userSmia') === undefined || localStorage.getItem('userSmia') === '') {
       this.router.navigate(['']);
     } else {
-      console.log('current user : ' + this.loginService.currentUser.username);
+      this.username = localStorage.getItem('userSmia');
       this.spotService.findAll();
-      console.log('lets go');
-      this.showLiked(this.spotService.spotes);
     }
   }
-
-  get spotes(): Spot[] {
-    return this.spotService.spotes;
-  }
-  get spot(): Spot {
-    return this.spotService.spot;
-  }
-  public save(spot: Spot, username: string) {
-    if (username == null) {
-      alert('You Have to Sign In');
-      this.router.navigate(['']);
-    } else if (spot.spotText == null || spot.spotText === '') {
-      alert('please enter something in your spotText');
-    }
-    else {
-      this.spotService.save(spot, username);
-    }
-
-  }
-
-  get currentUser(): Login {
-    return this.loginService.currentUser;
-  }
-  public addLike(spot: Spot, username: string) {
-    if (username == null) {
-      alert('You Have to Sign In');
-      this.router.navigate(['']);
+  save(spot: Spot){
+    if (spot.spotText == null || spot.spotText === '' || spot.spotText.length < 5) {
+      this.toast.warning('spot message must contain at least 5 characters');
+    } else if (spot.spotText.length > 1000) {
+      this.toast.warning('spot message must contain less than 1000 characters');
     } else {
-      this.showLiked(this.spotService.spotes);
-      this.spotService.addLike(spot, username);
+      this.visibleSidebar2 = false;
+      this.spotService.save(spot, localStorage.getItem('userSmia'));
+      this.spot.spotText = null ;
     }
-
   }
-
   public logOut() {
-    this.loginService.login.password = null;
-    this.loginService.connect = 0;
-    this.loginService.currentUser = null;
+    localStorage.setItem('userSmia', '');
     this.router.navigate(['']);
   }
-
-  private showLiked(alllspots: Array<Spot>){
-    this.list2 = this.loginService.currentUser.myLikedSpots;
-    console.log('ha 2 : ' + alllspots.length);
-    for (let i in alllspots) {
-      for (let j in this.list2) {
-        if (i === j) {
-          console.log('ha homa li deja mlaykyin ' + j);
-        }
-      }
-    }
+  get actionDone() {
+    return this.spotService.actionDone;
   }
-}
+ }

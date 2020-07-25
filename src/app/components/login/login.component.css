@@ -1,12 +1,29 @@
-.container{
-
-  font-size: larger;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10%;
-
-}
 label{
   color: #14b2ef;
 }
+
+#connect {
+  position: absolute;
+  left: 60%;
+  bottom: 10%;
+  animation-duration: 3s;
+}
+
+img {
+  margin-top: 3%;
+  margin-left: 3%;
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  animation-duration: 10s;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+  color: #6282ef;
+
+
+  animation-duration: 4s;
+}
+

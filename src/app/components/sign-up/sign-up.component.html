@@ -1,8 +1,7 @@
-<div class="container">
-  <div class="row">
-    <div class="card bg-transparent">
+<h1 class="animate__animated animate__rubberBand">So Happy, You'll Be Part of Our Family</h1>
+<p-progressSpinner *ngIf="actionDone" [style]="{width: '50px', height: '50px', left: '46%'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
 
-      <h1 style="text-align: center ; color: #125699">Welcome</h1>
+<div *ngIf="!actionDone" id="signUp">
       <div class="card-body">
         <div class="row">
 
@@ -11,7 +10,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input class="form-control" type="text" placeholder="your username" [(ngModel)]="login.username">
+              <input pInputText type="text" placeholder="your username" [(ngModel)]="login.username">
             </div>
           </div>
 
@@ -23,8 +22,9 @@
             <label>Email</label>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <input class="form-control" type="email" placeholder="your email" [(ngModel)]="login.email">
+            <div class="form-group" [class.has-error]="email.invalid && email.touched">
+              <input pInputText type="email" placeholder="your email" #email="ngModel" [(ngModel)]="login.email" email>
+              <span class="help-block" *ngIf="email.invalid">Email invalid</span>
             </div>
           </div>
 
@@ -37,14 +37,14 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <input type="password" class="form-control " placeholder="your password" [(ngModel)]="login.password">
+              <input pInputText type="password" placeholder="your password" [(ngModel)]="login.password">
             </div>
           </div>
         </div>
       </div>
       <div class="card-fouter">
         <button class="btn btn-block btn-outline-success" (click)="save(login)" >Sign Up</button>
+        <button class="btn btn-block btn-outline-primary" routerLink="">Log In</button>
       </div>
-    </div>
-  </div>
 </div>
+

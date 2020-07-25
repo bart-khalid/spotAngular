@@ -7,6 +7,6 @@ export class Login {
   public nbrSpot: number;
   public nbrFidelite: number;
   public spots = new Array<Spot>();
-  public myLikedSpots = Array<Spot>();
-
+  public myLikedSpots = new Array<Spot>();
+  public comments = new Array<Comment>();
 }

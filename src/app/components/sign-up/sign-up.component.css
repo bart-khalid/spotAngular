@@ -1,12 +1,18 @@
-.container{
-
-  font-size: larger;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 10%;
-
-}
 label{
   color: #14b2ef;
+}
+#signUp {
+  position: absolute;
+  left: 60%;
+  bottom: 10%;
+  animation-name: myAnimationLogin;
+  animation-duration: 3s;
+}
+h1 {
+  color: #89a795;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  text-align: center;
+  animation-duration: 6s;
 }

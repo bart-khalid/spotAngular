@@ -1,0 +1,33 @@
+<p-progressSpinner *ngIf="actionDone" [style]="{width: '50px', height: '50px', left: '46%'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+
+<div *ngIf="currentUser == null || currentUser == undefined" style="color: #0c9000; text-align: center; align-items: center; align-content: center"><p style="font-family: 'French Script MT'; font-size: x-large">O OOOOOh !! No Infos for the moment ! Try to reconnect again !!!</p></div>
+
+<div *ngIf="currentUser != null || currentUser != undefined">
+<div class="row">
+    <div class="col-md-4"><label><em style="color: #00908a; font-size: x-large">Nickname</em></label></div>
+    <div class="col-md-8"><input pInputText class="btn btn-block" type="text" [(ngModel)]="currentUser.username"></div>
+</div>
+<div class="row">
+    <div class="col-md-4"><label><em style="color: #00908a; font-size: x-large">Email</em></label></div>
+    <div class="col-md-8"><input pInputText class="btn btn-block" type="text" [(ngModel)]="currentUser.email"></div>
+</div>
+<div class="row">
+    <div class="col-md-4"><label><em style="color: #00908a; font-size: x-large">password</em></label></div>
+    <div class="col-md-8"><input pInputText class="btn btn-block" type="password" [(ngModel)]="currentUser.password"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-4"><label><em style="color: #00908a; font-size: x-large" >Confirm password</em></label></div>
+  <div class="col-md-8"><input pInputText class="btn btn-block" type="password" [(ngModel)]="passwordConfirm"></div>
+  <br>
+</div>
+  <div class="row">
+    <br>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4"><button pButton label="Save" class="btn btn-block" icon="pi pi-check" (click)="update(currentUser)" style="z-index: 999;"></button></div>
+  </div>
+</div>
+

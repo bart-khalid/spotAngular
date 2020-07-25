@@ -1,2 +1,74 @@
-<p style="color: #888888">&copy; 2020 khalid<p>
-<router-outlet></router-outlet>
+<p-progressSpinner *ngIf="actionDone || actionDone2" [style]="{width: '50px', height: '50px', left: '46%'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+<div *ngIf="AllSpots.length != 0 && (currentUser != null || currentUser != undefined)" class="card">
+       <div class="card-body" style="background-color: #98a0a7">
+         <table class="table  table-hover table-borderless" style="width: 100%">
+           <thead>
+           <tr class="row">
+             <th class="col-md-1" style="width: 10%"><i class="pi pi-pencil"></i></th>
+             <th class="col-md-2" style="width: 10%;"><i class="pi pi-user"></i></th>
+             <th class="col-md-6" style="width: 50%"><i class="pi pi-angle-double-down"></i></th>
+             <div class="col-md-1"><th  style="width: 10%"></th>
+             <th style="width: 10%"></th>
+             <th style="width: 10%"></th></div>
+           </tr>
+           </thead>
+           <tbody *ngFor="let s of AllSpots">
+           <tr class="row">
+           <td class="col-md-1"><em>{{'N° '+s.id+'| '+ s.date}}</em></td>
+           <td class="col-md-2"><strong>{{s.username}}</strong></td>
+           <td class="col-md-6">{{s.spotText}}</td>
+           <div class="col-md-3"><td><button class="btn btn-sm btn-outline-light" (click)="like(s)"><button class="btn btn-sm" style="color: red">{{s.nbrLike}}</button><i class="pi pi-heart"></i></button></td>
+           <td ><button class="btn btn-sm btn-outline-light" (click)="visibleSidebar3 = true; clone(s)"><button class="btn btn-sm" style="color: red">{{s.nbrComments}}</button><i class="pi pi-comments"></i></button></td>
+           <td ><a href="mailto:{{s.email}}"><button class="btn btn-sm btn-secondary"><i class="pi pi-envelope"></i></button></a></td></div>
+           </tr>
+           </tbody>
+         </table>
+       </div>
+</div>
+<div *ngIf="AllSpots.length != 0" class="comments">
+  <p-sidebar [(visible)]="visibleSidebar3" [fullScreen]="true" [baseZIndex]="10000" [style]="{overflowY: 'scroll', backgroundColor: 'black'}">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 style="font-weight:normal; font-family: 'Freestyle Script'; color: white">Comments for the spot N° {{spotClonned.id}} posted by {{spotClonned.username}}</h3>
+      </div>
+    </div>
+    <br> <br>
+
+<div *ngIf="spotClonned.comments.length === 0" style="color: #0c9000; text-align: center; align-items: center; align-content: center"><p style="font-family: 'French Script MT'; font-size: x-large">O OOOOOh !! No Comments for the moment ! Be the first to share a comment for this spot</p></div>
+
+
+    <table *ngIf="spotClonned.comments.length != 0 " class="table table-hover table-borderless" [style]="{backgroundColor: '#69656b'}">
+      <thead>
+      <th><i class="pi pi-user"></i></th>
+      <th><i class="pi pi-comment"></i></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of spotClonned.comments">
+        <td><strong>{{c.username}}</strong></td>
+        <td><i style="font-family: cursive; color: #752000">{{c.commentText+' .'}}</i></td>
+        <td *ngIf="username == c.username"><button class="btn btn-sm" (click)="delete(c.reference)"><i class="pi pi-trash"></i></button></td>
+      </tr>
+      </tbody>
+    </table>
+    <br>
+
+    <div style="bottom: 0; position: sticky; width: 99%">
+      <div class="row">
+        <div class="col-md-8">
+          <textarea name="comentText" id="commentText" rows="3" style="width: 100%; resize: none" placeholder="Your Comment !!!!" [(ngModel)]="comment.commentText" [style]="{backgroundColor: '#72857F'}"></textarea>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-block btn-outline-success" (click)="save(comment, spotClonned.reference, username)"><em style="color: #aae6e8">Done</em></button>
+        </div>
+      </div>
+    </div>
+
+
+  </p-sidebar>
+</div>
+
+<div *ngIf="AllSpots.length === 0 || currentUser == null || currentUser == undefined" style="text-align: center; align-items: center; align-content: center; color: red"><p style="font-family: 'French Script MT'; font-size: x-large">O OOOOh!!! No spot for the moment !!</p></div>
+<div *ngIf="currentUser == null || currentUser == undefined" style="text-align: center; align-items: center; align-content: center; color: red"><p style="font-family: 'French Script MT'; font-size: x-large">Unknown Problem !!! Try to reconnect again !!</p></div>
+
+
