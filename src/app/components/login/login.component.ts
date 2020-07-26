@@ -13,14 +13,12 @@ import {ToastrService} from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   private _currentUser = new Login();
-  usernameTest: string;
+
   constructor(private loginService: LoginService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    this.usernameTest = localStorage.getItem('userSmia');
-    if (this.usernameTest !== '') {
-      this.router.navigate(['actions/home']);
-    }
+    localStorage.setItem('userSmia', null);
+    // this.router.navigate(['actions/home']);
   }
   public seConnecter(username: string, password: string) {
     if ((username == null || username === '') && (password == null || password === '')) {
