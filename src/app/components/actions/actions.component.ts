@@ -18,11 +18,13 @@ export class ActionsComponent implements OnInit {
   visibleSidebar1;
   visibleSidebar2;
   username: string;
+  usernameTest: string;
   spot = new Spot();
   constructor(private spotService: SpotService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userSmia') == null || localStorage.getItem('userSmia') === '') {
+    this.usernameTest = localStorage.getItem('userSmia');
+    if (this.usernameTest === '' || this.usernameTest == null || this.usernameTest === undefined) {
       this.router.navigate(['']);
     } else {
       this.username = localStorage.getItem('userSmia');

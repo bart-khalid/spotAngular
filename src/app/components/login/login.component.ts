@@ -13,10 +13,12 @@ import {ToastrService} from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   private _currentUser = new Login();
+  usernameTest: string;
   constructor(private loginService: LoginService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userSmia') != null || localStorage.getItem('userSmia') !== '') {
+    this.usernameTest = localStorage.getItem('userSmia');
+    if (this.usernameTest !== '' || this.usernameTest != null || this.usernameTest !== undefined) {
       this.router.navigate(['actions/home']);
     }
   }
