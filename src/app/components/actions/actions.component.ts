@@ -22,7 +22,7 @@ export class ActionsComponent implements OnInit {
   constructor(private spotService: SpotService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('userSmia') == null || localStorage.getItem('userSmia') === undefined) {
+    if (localStorage.getItem('userSmia') == null || localStorage.getItem('userSmia') === '') {
       this.router.navigate(['']);
     } else {
       this.username = localStorage.getItem('userSmia');
