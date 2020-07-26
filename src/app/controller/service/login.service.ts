@@ -102,8 +102,8 @@ export class LoginService {
           this._actionDone = false;
         } else {
           localStorage.setItem('userSmia', login.username);
+          this.toast.info(login.username, 'Your new username');
           this.toast.success('Your infos was updated !!', 'success');
-          this.toast.info(login.username, 'Your username');
           this._actionDone = false;
         }
       }, error => {

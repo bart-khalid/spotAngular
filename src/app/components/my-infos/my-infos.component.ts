@@ -21,7 +21,6 @@ export class MyInfosComponent implements OnInit {
     return this.loginService.currentUser;
   }
   update(login: Login) {
-    console.log('ha lpasseword' + this.passwordConfirm);
     if (login.username === '' || login.username == null || login.username === undefined) {
       this.toast.warning('Please enter your username', 'Username is required');
     } else if (login.email === '' || login.email == null || login.email === undefined) {

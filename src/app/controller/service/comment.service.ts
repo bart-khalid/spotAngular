@@ -15,7 +15,10 @@ export class CommentService {
   private url = this.urlGlobal + 'Comment/';
   private text: string;
   private _actionDone;
-  constructor(private http: HttpClient, private toast: ToastrService, private router: Router, private spotService: SpotService, private configUrl: UrlConfigService) { }
+  constructor(private http: HttpClient, private toast: ToastrService,
+              private router: Router,
+              private spotService: SpotService,
+              private configUrl: UrlConfigService) { }
 
   public save(comment: Comment, reference: string, username: string) {
     this._actionDone = true;
